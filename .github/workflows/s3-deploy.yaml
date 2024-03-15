@@ -53,8 +53,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Remove file
         run: |
-          rm ./.gitignore
-          rm ./src/
+          ls -a
 
 
   sync:
