@@ -16,10 +16,10 @@ jobs:
           node-version: "20"
         
       - name: Install dependencies
-        run: yarn
+        run: npm install
 
       - name: Build with Next.js
-        run: yarn build
+        run: npm run build
 
   sync:
     runs-on: ubuntu-latest
