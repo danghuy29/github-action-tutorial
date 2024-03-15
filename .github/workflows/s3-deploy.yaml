@@ -53,13 +53,8 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Remove file
         run: |
-          rm -r node_modules/
-          rm -r .github/
-          rm -r .git/
-          rm .gitignore
-          rm .src/
-          rm .stylelintignore
-          rm yarn.lock
+          rm ./.gitignore
+          rm ./src/
 
 
   sync:
