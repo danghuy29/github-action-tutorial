@@ -51,28 +51,32 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-      - name: Remove file
-        run: |
-          rm ./.gitignore
 
+      - name: Upload outfolder
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact
+          path: ./out
 
   sync:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.S3_BUCKET_REGION }}  # Change this to your region of your bucket
+      
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact
     
-      - name: Remove file
+      - name: Check artifact
         run: |
             ls -a
 
-      - name: Sync to S3
-        run: aws s3 sync . s3://my-aws-github-action-bucket # Change this to your bucket name # Change this to your bucket name
+      # - name: Sync to S3
+      #   run: aws s3 sync . s3://my-aws-github-action-bucket # Change this to your bucket name # Change this to your bucket name
