@@ -55,6 +55,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./out
+          name: public
 
   sync:
     runs-on: ubuntu-latest
@@ -69,6 +70,15 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.S3_BUCKET_REGION }}  # Change this to your region of your bucket
+
+    - name: Download math result for job 2
+      uses: actions/download-artifact@v4
+      with:
+        name: public
+    
+    - shell: bash
+      run: |
+          value=`ls -a`
 
     - name: Sync to S3
       run: aws s3 sync out s3://my-aws-github-action-bucket # Change this to your bucket name # Change this to your bucket name
