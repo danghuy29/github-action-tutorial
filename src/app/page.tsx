@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col p-10 gap-4">
        <section>
-        <h1 className="text-lg font-bold">TEST 01 0948</h1>
+        <h1 className="text-lg font-bold">TEST 02</h1>
         <h1 className="text-lg font-bold">Primary Button</h1>
         <Button type="primary" size="sm">
           Primary
