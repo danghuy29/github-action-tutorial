@@ -6,6 +6,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col p-10 gap-4">
        <section>
         <h1 className="text-lg font-bold">TEST on date 18032024</h1>
+        <h1 className="text-lg font-bold">update variable bucket 18032024</h1>
         <h1 className="text-lg font-bold">Primary Button</h1>
         <Button type="primary" size="sm">
           Primary
